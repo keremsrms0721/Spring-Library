@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: admin-head"></head>
+<body class="bg-light">
+	<div class="container">
+		<div class="py-5 text-center">
+			<img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}"
+				alt="" width="100" height="100">
+			<h2>User Adding Page</h2>
+			<a th:href="@{/admin/users/list}">Back</a>
+		</div>
+
+		<div class="col-md-15 order-md-1">
+			<form method="post" th:object="${users}"
+				th:action="@{/admin/users/add}">
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label for="userName" th:text="'Username'"></label> <input
+							type="text" class="form-control" id="userName"
+							th:field="*{userName}" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label for="password" th:text="'User Password'"></label> <input
+							type="password" class="form-control" id="password"
+							th:field="*{userPassword}" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5 mb-3">
+						<label for="users" th:text="'Select role of the user'"></label> <select
+							class="custom-select d-block w-100" id="userRole"
+							th:field="${users.userRole}" required>
+							<option
+								th:each="user_roles : ${T(com.ozguryazilim.presentation.mvc.filter.UsersRoles).values()}"
+								th:value="${user_roles}" th:text="${user_roles}"
+								th:selected="${#strings.equals(filterNamee,user_roles)}"></option>
+						</select>
+					</div>
+				</div>
+
+
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Add
+					User</button>
+			</form>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head :: admin-head"></head>
+<body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}" alt="" width="100" height="100">
+    <h2>Book Editing Page</h2>
+	<a th:href="@{/admin/book/list}">Back</a>
+  </div>
+
+    
+    
+    <div class="col-md-15 order-md-1">
+      <form  th:object="${book}" method="post" th:action="@{/admin/book/edit/{id}(id=${book.bookId})}">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="bookName" th:text="'Book Name'"></label>
+         	<input type="text" class="form-control" id="bookName" th:field="*{bookName}" required>
+          </div>
+          
+          <div class="col-md-6 mb-3">
+            <label for="seriesName" th:text="'Series Name'"></label>
+            <input type="text" class="form-control" id="seriesName" th:field="*{seriesName}" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="isbn" th:text="'ISBN'"></label>
+          <input type="text" class="form-control" th:field="*{isbn}" id="isbn" required>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="writer" th:text="'Select writer of the book'"></label>
+            <select class="custom-select d-block w-100" id="writer" th:field="${book.writerId}" required>
+              <option th:each="writer : ${writers}"
+						th:value="${writer.writerId}"
+						th:text="${writer.writerName}"
+				></option>
+            </select>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <label th:text="'Select publisher of the book'"></label>
+            <select class="custom-select d-block w-100" th:field="${book.publisherId}" required>
+             <option th:each="publisher : ${publishers}"
+						th:value="${publisher.publisherId}"
+						th:text="${publisher.publisherName}"
+				></option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="description" th:text="'Description about the book'"></label>
+            <textarea class="form-control" id="description"	th:field="*{description}" rows="7" required>
+            </textarea>
+          </div>
+        </div>
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Update Book</button>
+      </form>
+    </div>
+  </div>
+<div th:replace="fragments/footer :: footer">
+
+</div>
+</body>
+</html>

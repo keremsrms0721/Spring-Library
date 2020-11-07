@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: admin-head"></head>
+
+
+<body class="d-flex flex-column h-100">
+	<nav th:replace="fragments/nav :: admin-nav"></nav>
+	<!-- Begin page content -->
+	<main role="main" class="flex-shrink-0">
+		<div class="container">
+			<h1 class="mt-5">All Books</h1>
+			<br>							
+			<div th:if="${message}" th:text="${message}" th:class="${'alert '+alertClass}"></div>						
+			<a th:href="@{/admin/book/add}" class="btn btn-warning" th:style="'margin-bottom:25px;'">Add Book</a>
+			
+			<table class="table table-fluid" id="myTable">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Series name</th>
+						<th scope="col">ISBN</th>
+						<th scope="col">Writer name</th>
+						<th scope="col">Publisher name</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr  th:each="book : ${books}">
+						<td th:text="${book.bookName}"  data-toggle="modal" th:attr="data-target='#book'+${book.bookId}"></td>
+						<td th:text="${book.seriesName}"  data-toggle="modal" th:attr="data-target='#book'+${book.bookId}"></td>
+						<td th:text="${book.isbn}"  data-toggle="modal" th:attr="data-target='#book'+${book.bookId}"></td>
+						<td th:text="${book.writerName}"  data-toggle="modal" th:attr="data-target='#book'+${book.bookId}"></td>
+						<td th:text="${book.publisherName}"  data-toggle="modal" th:attr="data-target='#book'+${book.bookId}"></td>
+						<td><a th:href="@{'/admin/book/edit/'+${book.bookId}}"
+							th:text="UPDATE"
+							th:class="'btn btn-primary'"
+							></a></td>
+						<td><a
+							th:href="@{'/admin/book/delete/'+${book.bookId}}"
+							th:text="DELETE"
+							class="btn btn-danger confirmDeletion"
+							></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+	
+<div class="modal fade bd-example-modal-xl" th:each="book : ${books}" th:id="'book'+${book.bookId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" >
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" th:text="${book.bookName}"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p th:text="'Writer Name and Surname: '+${book.writerName}+' '+${book.writerSurname}" th:style="'color:purple;'"></p>
+        <p th:text="'Series Name : '+${book.seriesName}"></p>
+        <p th:text="'ISBN : '+${book.isbn}"  th:style="'color:purple;'"></p>
+        <p th:text="'Publisher : '+${book.publisherName}"></p>
+        <p th:text="'Publisher description : '+${book.publisherDescription}" th:style="'color:purple;'"></p>
+        <p th:text="'Writer description : '+${book.writerDescription}" ></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+
+</body>
+</html>
+

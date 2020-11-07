@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: admin-head"></head>
+
+<body class="d-flex flex-column h-100">
+	<nav th:replace="fragments/nav :: admin-nav"></nav>
+	<!-- Begin page content -->
+		
+	
+	<main role="main" class="flex-shrink-0">
+		<div class="container">
+			<h1 class="mt-5">All Users</h1>
+			<br/>
+			<div th:if="${message}" th:text="${message}" th:class="${'alert '+alertClass}"></div>
+			<a th:href="@{/admin/users/add}" class="btn btn-warning" th:style="'margin-bottom:25px;'">Add User</a>
+			<table class="table table-fluid" id="myTable">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">Username</th>
+						<th scope="col">Role</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.userName}"></td>
+						<td th:text="${user.userRole}"></td>
+						<td>
+						<a
+							th:href="@{/admin/users/edit/{id}(id=${user.userId})}"
+							th:text="UPDATE" 
+							th:class="'btn btn-primary'"
+							></a></td>
+						<td><a
+							th:href="@{/admin/users/delete/{id}(id=${user.userId})}"
+							class="btn btn-danger confirmDeletion"
+							th:if="${!currentUsername.equals(user.userName)}" th:text="DELETE"
+							></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+
+
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

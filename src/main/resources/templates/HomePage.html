@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" th:href="@{/mycss/style.css}">
+</head>
+<body
+	th:style="'background : url(' + @{/photos/jka.jpg} + ') no-repeat fixed center/100% 100%;'">
+	<!-- <body> -->
+	<div class="container">
+		<br>
+		<p th:if="${message}" th:text="${message}"
+			th:class="${'alert '+alertClass}"></p>
+		<br>
+		<h2 th:style="'text-align:center;color:green;'">Library Project</h2>
+		<p th:style="'text-align:center;color:green;'">If you want to see
+			details of books,</p>
+		<p th:style="'text-align:center;color:green;'">please sign up or
+			signin then click on the row</p>
+		<!-- Trigger the modal with a button -->
+		<button type="button" class="btn btn-success btn-lg" id="myBtn">Login</button>
+		<button type="button" class="btn btn-default btn-lg" id="signup">Sign
+			up</button>
+		<br>
+		<br>
+		<table class="table" id="myTable">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Series name</th>
+					<th scope="col">ISBN</th>
+					<th scope="col">Writer name</th>
+					<th scope="col">Publisher name</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="book : ${books}">
+					<td th:text="${book.bookName}"></td>
+					<td th:text="${book.seriesName}"></td>
+					<td th:text="${book.isbn}"></td>
+					<td th:text="${book.writerName}"></td>
+					<td th:text="${book.publisherName}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="padding: 35px 50px;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4>
+							<span class="glyphicon glyphicon-lock"></span> Login
+						</h4>
+					</div>
+					<div class="modal-body" style="padding: 40px 50px;">
+						<form role="form" method="post" name="login"
+							th:action="@{/frontend/login}">
+							<div class="form-group">
+								<label for="username"><span
+									class="glyphicon glyphicon-user"></span> Username</label> <input
+									type="text" class="form-control" id="username"
+									placeholder="Enter username" name="username">
+							</div>
+							<div class="form-group">
+								<label for="psw"><span
+									class="glyphicon glyphicon-eye-open"></span> Password</label> <input
+									type="password" class="form-control" id="password"
+									placeholder="Enter password" name="password">
+							</div>
+							<button type="submit" class="btn btn-success btn-block">
+								<span class="glyphicon glyphicon-off"></span> Login
+							</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-danger btn-default pull-left"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span> Cancel
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<div class="modal fade" id="myModal2" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header" style="padding: 35px 50px;">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4>
+							<span class="glyphicon glyphicon-lock"></span> Sign up
+						</h4>
+					</div>
+					<div class="modal-body" style="padding: 40px 50px;">
+						<form role="form" action="#" method="post" th:object="${user}"
+							th:action="@{/frontend/signup}">
+							<div class="form-group">
+								<label for="username"><span
+									class="glyphicon glyphicon-user"></span> Username</label> <input
+									type="text" class="form-control" id="userName"
+									placeholder="Enter username" th:field="*{userName}">
+							</div>
+							<div class="form-group">
+								<label for="password"><span
+									class="glyphicon glyphicon-eye-open"></span> Password</label> <input
+									type="password" class="form-control" id="userPassword"
+									placeholder="Enter password" th:field="*{userPassword}">
+							</div>
+							<button type="submit" class="btn btn-success btn-block">
+								<span class="glyphicon glyphicon-off"></span>Sign up
+							</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-danger btn-default pull-left"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span> Cancel
+						</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<script th:src="@{/js/modal.js}"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/table.js}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head :: admin-head"></head>
+<body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}" alt="" width="100" height="100">
+    <h2>Publisher Editing Page</h2>
+	<a th:href="@{/admin/publisher/list}">Back</a>
+  </div>
+    <div class="col-md-15 order-md-1">
+      <form  th:object="${publisher}" method="post" th:action="@{/admin/publisher/edit/{id}(id=${publisher.publisherId})}">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="publisherName" th:text="'Publisher Name'"></label>
+         	<input type="text" class="form-control" id="publisherName" th:field="*{publisherName}" required>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="publisherDescription" th:text="'Description about the publisher'"></label>
+            <textarea class="form-control" id="publisherDescription" th:field="*{publisherDescription}" rows="7" required>
+            </textarea>
+          </div>
+        </div>
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Update Publisher</button>
+      </form>
+    </div>
+  </div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

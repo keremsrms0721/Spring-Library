@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head :: admin-head"></head>
+<body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}" alt="" width="100" height="100">
+    <h2>Writer Adding Page</h2>
+    <a th:href="@{/admin/writer/list}">Back</a>
+  </div>
+  
+    <div class="col-md-15 order-md-1">
+<form id="frmWriter" name="frmWriter">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Writer Name</label>
+         	<input type="text" class="form-control" required id="writerName" name="writerName" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Writer Surname</label>
+         	<input type="text" class="form-control" name="writerSurname" id="writerSurname" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label>Description about the writer</label>
+            <input type="text" class="form-control" id="writerDescription" name="writerDescription" required/>
+           </div>
+        </div>
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" id="save" onclick="addStudent()" type="button">Add Writer</button>
+      </form>
+    </div>
+  </div>
+  
+<div th:replace="fragments/footer :: footer">
+
+</div>
+	<script th:src="@{/js/addWriter.js}">
+	
+	</script>
+</body>
+</html>
+

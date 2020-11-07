@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: admin-head"></head>
+
+<body class="d-flex flex-column h-100">
+	<nav th:replace="fragments/nav :: admin-nav"></nav>
+	<!-- Begin page content -->
+	<main role="main" class="flex-shrink-0">
+	
+		<div class="container">
+			<h1 class="mt-5">All Publishers</h1>
+			<br>
+			<div th:if="${message}" th:text="${message}" th:class="${'alert '+alertClass}"></div>
+			<a th:href="@{/admin/publisher/add}" class="btn btn-warning" th:style="'margin-bottom:25px;'">Add Publisher</a>
+			<table class="table table-fluid" id="myTable">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="publisher : ${publishers}">
+						<td th:text="${publisher.publisherName}"></td>
+						<td><a
+							th:href="@{'/admin/publisher/edit/'+${publisher.publisherId}}"
+							th:text="UPDATE" 
+							th:class="'btn btn-primary'"
+							></a></td>
+						<td><a
+							th:href="@{'/admin/publisher/delete/'+${publisher.publisherId}}"
+							th:text="DELETE"
+							class="btn btn-danger confirmDeletion"
+							></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+
+
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

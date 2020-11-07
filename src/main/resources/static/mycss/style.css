@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+
+.myformclass{
+	
+background-color: #82745bb0; color: #fff; position: relative; top: 127px; left: 32%; width: 35%; padding: 50px; border-radius: 20px;
+}
+span.error{
+	color:red;
+}
+.modal-header, h4, .close {
+	background-color: #5cb85c;
+	color: white !important;
+	text-align: center;
+	font-size: 30px;
+}
+
+.modal-footer {
+	background-color: #f9f9f9;
+}

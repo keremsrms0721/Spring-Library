@@ -1,0 +1,37 @@
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="admin-nav">
+    <a class="navbar-brand" th:style="'color:white;'">Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+       	 <a th:href="@{/admin/book/list}" class="nav-link" th:text="'Books'"></a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+       	 <a th:href="@{/admin/writer/list}" th:text="'Writers'" class="nav-link"></a>
+        </li>
+         <li class="nav-item">
+       	 <a th:href="@{/admin/publisher/list}" th:text="'Publishers'" class="nav-link"></a>
+        </li> 
+        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+       	 <a th:href="@{/admin/users/list}" th:text="'Users'" class="nav-link"></a>
+        </li>
+      </ul>
+	    
+	    <a th:href="@{/frontend/home}" th:text="'Home Page'" class="nav-link"></a>
+		<a th:href="@{/frontend/logout}">Logout</a>
+    </div>
+  </nav>
+  
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" th:fragment="user-nav">
+    <a class="navbar-brand" th:style="'color:white;'">Ozgur Yazilim Library Project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+     
+    </div>
+	<a th:href="@{/frontend/logout}">Logout</a>
+  </nav>
+  

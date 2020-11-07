@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head :: admin-head"></head>
+<body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}" alt="" width="100" height="100">
+    <h2>Publisher Adding Page</h2>
+    <a th:href="@{/admin/publisher/list}">Back</a>
+  </div>
+
+    <div class="col-md-15 order-md-1">
+      
+      <form id="frmPublisher" name="frmPublisher">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<div class="form-group">
+			<div class="col-md-6 mb-3">
+				<label>Publisher Name</label>
+				 <input id="publisherName" class="form-control" name="publisherName" placeholder="publisherName" required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-12 mb-3">
+				<label>Publisher Description</label>
+				 <textarea rows="9" id="publisherDescription" class="form-control" name="publisherDescription" placeholder="publisherDescription" required></textarea>	
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-6 mb-3">
+				<button type="button" class="btn btn-success" id="save" onclick="addStudent()">Add</button>
+			</div>
+		</div>		
+	</form>
+    </div>
+  </div>
+<div th:replace="fragments/footer :: footer">
+
+</div>
+	<script th:src="@{/js/addPublisher.js}">
+	
+	</script>
+</body>
+</html>

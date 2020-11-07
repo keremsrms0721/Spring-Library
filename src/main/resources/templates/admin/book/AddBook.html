@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head :: admin-head"></head>
+<body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}" alt="" width="100" height="100">
+    <h2>Book Adding Page</h2>
+    <a th:href="@{/admin/book/list}">Back</a>
+  </div>
+
+    
+    <div class="col-md-15 order-md-1">
+      <form id="frmBook" name="frmBook">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Book Name</label>
+         	<input type="text" class="form-control" id="bookName" name="bookName" required>
+          </div>
+          
+          <div class="col-md-6 mb-3">
+            <label>Series Name</label>
+            <input type="text" class="form-control" name="seriesName" id="seriesName" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="isbn" th:text="'ISBN'"></label>
+          <input type="text" class="form-control"  name="isbn"  id="isbn" required>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label>Select writer of the book</label>
+            <select class="custom-select d-block w-100" id="writer" name="writer" required>
+              <option th:each="writer : ${writers}"
+						th:value="${writer.writerId}"
+						th:text="${writer.writerName}"
+				></option>
+            </select>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <label>Select publisher of the book</label>
+            <select class="custom-select d-block w-100" id="publisher" name="publisher" required>
+             <option th:each="publisher : ${publishers}"
+						th:value="${publisher.publisherId}"
+						th:text="${publisher.publisherName}"
+				></option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label>Description about the book</label>
+            <textarea class="form-control" id="description" name="description" rows="7" required></textarea>
+          </div>
+        </div>
+
+        <hr class="mb-4">
+		<button type="button" class="btn btn-success" id="save" onclick="addStudent()">Add</button>
+      </form>
+    </div>
+  </div>
+<div th:replace="fragments/footer :: footer">
+
+</div>
+
+	<script th:src="@{/js/addBook.js}">
+	
+	</script>
+</body>
+</html>

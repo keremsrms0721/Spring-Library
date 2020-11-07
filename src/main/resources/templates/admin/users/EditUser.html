@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: admin-head"></head>
+<body class="d-flex flex-column h-100">
+	<div class="container">
+		<div class="py-5 text-center">
+			<img class="d-block mx-auto mb-4" th:src="@{/photos/admin.jpg}"
+				alt="" width="100" height="100">
+			<h2>User Editing Page</h2>
+			<a th:href="@{/admin/users/list}">Back</a>
+		</div>
+		<div class="col-md-15 order-md-1">
+			<form th:object="${users}" method="post"
+				th:action="@{/admin/users/edit/{id}(id=${users.userId})}">
+				<div class="row">
+					<div class="col-md-6 mb-3">
+						<label for="userName" th:text="'User Name'"></label> <input
+							type="text" class="form-control" id="userName"
+							th:field="*{userName}" required>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-5 mb-3">
+						<label for="users" th:text="'Select role of the user'"></label> <select
+							class="custom-select d-block w-100" id="userRole"
+							th:field="${users.userRole}" required>
+							<option
+								th:each="user_roles : ${T(com.ozguryazilim.presentation.mvc.filter.UsersRoles).values()}"
+								th:value="${user_roles}" th:text="${user_roles}"
+								th:selected="${#strings.equals(filterNamee,user_roles)}"></option>
+						</select>
+					</div>
+				</div>
+
+
+
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Update
+					User</button>
+			</form>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
