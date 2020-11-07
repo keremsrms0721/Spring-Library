@@ -1,7 +1,6 @@
 # Kütüphane Projesi (Library Project) !
 
-Kütüphane projesi özgür yazılıma staj için başvuruda bulunduğum projedir.Projede sadece backend tarafı çok güçlü yapılmaya çalışılmıştır. Frontend , backend tarafı kadar güçlü hazırlanılmamıştır , sadece backendi kullanabilmek için hazırlanmıştır.
-
+Kütüphane projesi özgür yazılıma staj için başvuruda bulunduğum projedir.
 
 ## Proje nasıl çalıştırılır 
 Öncelikle java jdk indirilmesi gerekiyor.https://www.oracle.com/tr/java/technologies/javase/javase-jdk8-downloads.html Buradan işletim sisteminize uygun jdk'yi indirebilirsiniz.Ben windows 10 kullanıyorum.Jdk kurulduktan sonra mavenin de bilgisayarınıza yüklü olması gerek çünkü projeyi jar dosyasına çevirecez.http://maven.apache.org/download.cgi Binary zip archive 	apache-maven-3.6.3-bin.zip bunu indirin.Daha sonra maven dosyasını zipten çıkarıp masaüstüne alın.
